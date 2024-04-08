@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom';
 // import SignUp from './SignUp';
 import axios  from 'axios';
 function Login() {
+  const navigate = useNavigate();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     async function post(e){
@@ -13,6 +14,7 @@ function Login() {
          await axios.post("http://localhost:8000/", {email,password}).then(e =>{
           if(e.data==="user exits"){
             alert("succesfully Login")
+            navigate('/Home')
           }
           else if(e.data=="User Does not Exist"){
             alert(e.data);

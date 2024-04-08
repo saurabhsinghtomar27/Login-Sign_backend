@@ -22,15 +22,16 @@ app.post('/',async (req,res)=>{
       res.send("Password Incorrect").json();
     }
   }
-  console.log(result[0].password);
+  // console.log(result[0].password);
   
   // console.log(email+" "+password)
 })
 app.post('/sign',async(req,res)=>{
-  res.send(req.body).json();
   const {email,password}=req.body;
- const result= await User.create({email:email,password:password});
- console.log(result);
+  const result= await User.create({email:email,password:password});
+ 
+  res.send("user is created").json()
+  
 })
 app.listen(process.env.PORT,()=>{
     console.log("listening to port")
